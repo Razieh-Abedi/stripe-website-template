@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import phoneImg from "./images/phone.svg";
 import AppContext from "./context";
 function Hero() {
-  const { closeSubmenu } = useContext(AppContext);
-
+  const [isSubmenuOpen, setIsSubmenuOpen] = useContext(AppContext);
+  const closeSubmenu = () => {
+    setIsSubmenuOpen(false);
+  };
   return (
     <section className="hero">
       <div className="hero-center">

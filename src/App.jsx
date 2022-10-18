@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import AppContext from "./context";
 import Hero from "./Hero";
@@ -9,28 +9,17 @@ import Navbar from "./Navbar";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const openSidebar = () => {
-    setIsSidebarOpen(true);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-  const openSubmenu = () => {
-    setIsSubmenuOpen(true);
-  };
-  const closeSubmenu = () => {
-    setIsSubmenuOpen(false);
-  };
+  const [location, setLocation] = useState({});
 
   return (
     <AppContext.Provider
       value={[
         isSidebarOpen,
         isSubmenuOpen,
-        openSidebar,
-        closeSidebar,
-        openSubmenu,
-        closeSubmenu,
+        setIsSidebarOpen,
+        setIsSubmenuOpen,
+        location,
+        setLocation,
       ]}
     >
       <Navbar />
