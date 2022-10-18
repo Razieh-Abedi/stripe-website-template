@@ -2,17 +2,25 @@ import React, {useContext} from "react";
 import logo from "./images/logo.svg";
 import { FaBars } from "react-icons/fa";
 import AppContext from "./context";
+import sublinks from "./data";
 
 function Navbar() {
-  const [setIsSidebarOpen, setIsSubmenuOpen, setLocation]   = useContext(AppContext);
+  const [setIsSidebarOpen, setIsSubmenuOpen, setLocation, setPage]   = useContext(AppContext);
   const openSidebar = () => {
     setIsSidebarOpen(true);
   };
   const openSubmenu = (text, coordinates) => {
+    const page = sublinks.find((link)=> link.page === text);
+    setPage(page);
     setLocation(coordinates);
     setIsSubmenuOpen(true);
   };
- 
+ const handleSubmenu = (e)=>{
+  if (!e.target.classList.contains("link-btn")) {
+    setIsSubmenuOpen(false)
+  }
+  
+ }
   const displaySubmenu = (e) => {
    const page = e.target.textContent;
    const tempBtn = e.target.getBoundingClientRect();
@@ -21,7 +29,7 @@ function Navbar() {
     openSubmenu(page, {center, bottom});
   };
   return (
-    <nav className="nav">
+    <nav className="nav" onMouseOver={handleSubmenu}>
       <div className="nav-center">
         <div className="nav-header">
           <img src={logo} alt="Stripe logo" className="nav-logo" />

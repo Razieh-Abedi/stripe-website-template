@@ -1,22 +1,38 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import AppContext from "./context";
 
 function Submenu() {
-  const [isSubmenuOpen, location] = useContext(AppContext);
+  const [isSubmenuOpen, location, page:{page, links}] = useContext(AppContext);
   const container = useRef(null);
+  const [columns, setColumns] = useState(second)
   useEffect(() => {
+    setColumns("col-2")
     const submenu = container.current;
     const { center, bottom } = location;
     submenu.style.left = `${center}px`;
     submenu.style.top = `${bottom}px`;
-  }, [location]);
+    if (links.length ===3) {
+      setColumns("col-3")
+    }
+    if (links.length >3) {
+      setColumns("col-4")
+    }
+  }, [location, links]);
+  
   return (
     <aside
       className={`${isSubmenuOpen ? "submenu show" : "submenu"}`}
       ref={container}
     >
-      Submenu
+   <h4>{page}</h4>
+   <div className={`submenu-center ${columns}`}>
+    {links.map((link, index)=>{
+      const [label, icon, url]= link;
+      return <a key={index} href={url}>{icon}{label}</a>
+    })}
+   </div>
+
     </aside>
   );
 }

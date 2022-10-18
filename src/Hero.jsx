@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import phoneImg from "./images/phone.svg";
 import AppContext from "./context";
 function Hero() {
-  const [isSubmenuOpen, setIsSubmenuOpen] = useContext(AppContext);
-  const closeSubmenu = () => {
-    setIsSubmenuOpen(false);
-  };
+  const [ setIsSubmenuOpen] = useContext(AppContext);
+ 
   return (
-    <section className="hero">
+    <section className="hero" onMouseOver={()=>setIsSubmenuOpen(false)}>
       <div className="hero-center">
         <article className="hero-info">
           <h1>Payments infrastructure for the internet</h1>
