@@ -1,14 +1,14 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { FaTimes } from "react-icons/fa";
 import sublinks from "./data";
 import AppContext from "./context";
 
 function Sidebar() {
-  const [isSidebarOpen, setIsSidebarOpen]   = useContext(AppContext);
+  const [isSidebarOpen, setIsSidebarOpen] = useContext(AppContext);
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-  
+
   return (
     <aside
       className={`${

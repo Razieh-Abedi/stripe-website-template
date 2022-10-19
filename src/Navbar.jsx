@@ -5,13 +5,13 @@ import AppContext from "./context";
 import sublinks from "./data";
 
 function Navbar() {
-  const [setIsSidebarOpen, setIsSubmenuOpen, setLocation, setPage]   = useContext(AppContext);
+  const [setIsSidebarOpen, setIsSubmenuOpen, setLocation, setPages]   = useContext(AppContext);
   const openSidebar = () => {
     setIsSidebarOpen(true);
   };
   const openSubmenu = (text, coordinates) => {
     const page = sublinks.find((link)=> link.page === text);
-    setPage(page);
+    setPages(page);
     setLocation(coordinates);
     setIsSubmenuOpen(true);
   };
@@ -33,7 +33,7 @@ function Navbar() {
       <div className="nav-center">
         <div className="nav-header">
           <img src={logo} alt="Stripe logo" className="nav-logo" />
-          <button className="btn toggle-btn" onClick={displaySubmenu}>
+          <button className="btn toggle-btn" onClick={openSidebar}>
             <FaBars />
           </button>
         </div>
@@ -49,7 +49,7 @@ function Navbar() {
             </button>
           </li>
           <li>
-            <button className="link-btn" onMouseOver={openSubmenu}>
+            <button className="link-btn" onMouseOver={displaySubmenu}>
               company
             </button>
           </li>
