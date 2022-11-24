@@ -1,35 +1,22 @@
-import React, {useContext} from "react";
+import React from "react";
 import logo from "./images/logo.svg";
 import { FaBars } from "react-icons/fa";
-import AppContext from "./context";
-import sublinks from "./data";
+import { useGlobalContext } from "./context";
+// import sublinks from "./data";
 
 function Navbar() {
-  const [setIsSidebarOpen, setIsSubmenuOpen, setLocation, setPages]   = useContext(AppContext);
-  const openSidebar = () => {
-    setIsSidebarOpen(true);
-  };
-  const openSubmenu = (text, coordinates) => {
-    const page = sublinks.find((link)=> link.page === text);
-    setPages(page);
-    setLocation(coordinates);
-    setIsSubmenuOpen(true);
-  };
- const handleSubmenu = (e)=>{
-  if (!e.target.classList.contains("link-btn")) {
-    setIsSubmenuOpen(false)
-  }
-  
- }
+  const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext();
+
   const displaySubmenu = (e) => {
-   const page = e.target.textContent;
-   const tempBtn = e.target.getBoundingClientRect();
-  const center = (tempBtn.left + tempBtn.right)/2;
-  const bottom = tempBtn.bottom - 3;
+    const page = e.target.textContent;
+    const tempBtn = e.target.getBoundingClientRect();
+    const center = (tempBtn.left + tempBtn.right) / 2;
+    const bottom = tempBtn.bottom -3;
     openSubmenu(page, {center, bottom});
   };
+
   return (
-    <nav className="nav" onMouseOver={handleSubmenu}>
+    <nav className="nav">
       <div className="nav-center">
         <div className="nav-header">
           <img src={logo} alt="Stripe logo" className="nav-logo" />

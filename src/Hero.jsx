@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import phoneImg from "./images/phone.svg";
-import AppContext from "./context";
+import { useGlobalContext } from "./context";
+
 function Hero() {
-  const [ setIsSubmenuOpen] = useContext(AppContext);
- 
+  const { closeSubmenu } = useGlobalContext();
+
   return (
-    <section className="hero" onMouseOver={()=>setIsSubmenuOpen(false)}>
+    <section className="hero">
       <div className="hero-center">
         <article className="hero-info">
           <h1>Payments infrastructure for the internet</h1>
